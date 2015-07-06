@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+        <title>Example of js api with event handling</title>
+        <style>
+            #pNumber1 {
+                font-size:200px
+            }
+
+            #pNumber2 {
+                font-size:200px
+            }
+            #myContent2 {
+                display: inline-block;
+            }
+        </style>
+    <style media="screen" type="text/css">#myContent1 {visibility:hidden}</style></head>
+
+    <body>
+        <script type="text/javascript" src="Example%20of%20js%20api%20with%20event%20handling_archivos/swfobject.js"></script>
+        
+         <div>
+            <h1>New Issuu Reader</h1>
+            <div id="myContent2" data-configid="1000932/1341338" style="width: 420px; height: 300px;" class="issuuembed issuu-isrendered"><object id="issuu_27535867356391286" style="width:100%;height:100%" type="application/x-shockwave-flash" data="Example%20of%20js%20api%20with%20event%20handling_archivos/IssuuReader.swf"><param name="movie" value="http://static.issuu.com/webembed/viewers/style1/v2/IssuuReader.swf"><param name="flashvars" value="mode=mini&amp;jsAPIClientDomain=developers.issuu.com&amp;jsAPIInitCallback=issuuflashEmbedOnInit4326289833563418&amp;bl_referrer=http%3A%2F%2Fdevelopers.issuu.com%2Fapi%2Fviewer%2FeventExample.html&amp;printButtonEnabled=true&amp;backgroundImage=&amp;backgroundStretch=true&amp;layout=&amp;documentId=111012074713-4e6b8319ed85481c80abc561b403c51d&amp;embedId=1000932/1341338"><param name="allowfullscreen" value="true"><param name="allowscriptaccess" value="always"><param name="menu" value="false"><param name="wmode" value="transparent"></object></div>
+            <script type="text/javascript" src="Example%20of%20js%20api%20with%20event%20handling_archivos/embed.js" async="true"></script>
+            <span id="pNumber2">1</span>
+            <p>
+                <a href="#" onclick="IssuuReaders.get('1000932/1341338').goToNextPage(); return false;">goToNextPage</a>
+                <a href="#" onclick="IssuuReaders.get('1000932/1341338').goToFirstPage(); return false;">goToFirstPage</a>
+                <a href="#" onclick="IssuuReaders.get('1000932/1341338').setPageNumber(2); return false;">Go to page two</a>
+            </p>
+            <script type="text/javascript">
+                var viewer2ChangeHandler = function() {
+                    var viewer = IssuuReaders.get('1000932/1341338');
+                    var pageNumber = viewer.getPageNumber();
+                    document.getElementById('pNumber2').innerHTML = pageNumber;
+                };
+
+                window.onIssuuReadersLoaded = function() {
+                    IssuuReaders.get('1000932/1341338').addEventListener("change", "viewer2ChangeHandler");
+                };
+            </script>
+        </div>
+        
+        <div>
+            <h1>Issuu Viewer 1.0</h1>
+            <object data="Example%20of%20js%20api%20with%20event%20handling_archivos/IssuuViewer.swf" id="issuuViewer1" type="application/x-shockwave-flash" height="264" width="420"><param value="true" name="allowfullscreen"><param value="always" name="allowScriptAccess"><param value="false" name="menu"><param value="jsAPIInitCallback=myCallback1&amp;jsAPIClientDomain=developers.issuu.com&amp;mode=embed&amp;layout=http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml&amp;showFlipBtn=true&amp;documentId=081219132433-764a1eafce5141fda136d10d58bd45f5&amp;docName=2008-12&amp;username=press&amp;loadingInfoText=Introducing%20Smart%20Look%20by%20Issuu&amp;et=1251881404594&amp;er=57" name="flashvars"></object>
+            <span id="pNumber1">2</span>
+            <p>
+                <a href="#" onclick="document.getElementById('issuuViewer1').goToNextPage(); return false;">goToNextPage</a>
+                <a href="#" onclick="document.getElementById('issuuViewer1').goToFirstPage(); return false;">goToFirstPage</a>
+                <a href="#" onclick="document.getElementById('issuuViewer1').setPageNumber(2); return false;">Go to page two</a>
+            </p>
+            <script type="text/javascript">
+                var viewer1ChangeHandler = function() {
+                    var viewer = document.getElementById('issuuViewer1');
+                    var pageNumber = viewer.getPageNumber();
+                    document.getElementById('pNumber1').innerHTML = pageNumber;
+                }
+                function myCallback1() {
+                    document.getElementById('issuuViewer1').addEventListener("change", "viewer1ChangeHandler");
+                }
+
+                var attributes = {
+                    id: 'issuuViewer1'
+                };
+
+                var params = {
+                    allowfullscreen: 'true',
+                    allowScriptAccess: 'always',
+                    menu: 'false'
+                };
+
+                var flashvars = {
+                    jsAPIInitCallback: 'myCallback1',
+                    jsAPIClientDomain: location.hostname,
+                    mode: 'embed',
+                    layout: 'http%3A%2F%2Fskin.issuu.com%2Fv%2Flight%2Flayout.xml',
+                    showFlipBtn: 'true',
+                    documentId: '081219132433-764a1eafce5141fda136d10d58bd45f5',
+                    docName: '2008-12',
+                    username: 'press',
+                    loadingInfoText: 'Introducing%20Smart%20Look%20by%20Issuu',
+                    et: '1251881404594',
+                    er: '57'
+                };
+
+                swfobject.embedSWF("http://static.issuu.com/webembed/viewers/style1/v1/IssuuViewer.swf", "myContent1", "420", "264", "9.0.0", "swfobject/expressInstall.swf", flashvars, params, attributes);
+
+            </script>
+        </div>
+
+       
+
+    
+</body></html>
